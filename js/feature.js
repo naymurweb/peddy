@@ -85,7 +85,9 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
                       pet?.price ? pet?.price : "Not Available"
                     }</p>
                     <div class="flex justify-between border-t-2 py-3 items-center">
-                      <button class="btn btn-sm text-primary text-xl px-8"><i class="fa-regular fa-thumbs-up"></i></button>
+                      <button onclick={likePet(${
+                        pet?.petId
+                      })}  class="btn btn-sm text-primary text-xl px-8"><i class="fa-regular fa-thumbs-up"></i></button>
                       <button class="btn btn-sm text-primary text-lg">Adopt</button>
                       <button onclick={petDetails(${
                         pet?.petId
@@ -133,8 +135,26 @@ const showPetDetails = (data) => {
                     Details Information
                     <h3>
                     <p>${data.pet_details}</p>
-
     `;
 };
 
 petsData();
+
+// like button
+const likePet = (id) => {
+  fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`)
+    .then((res) => res.json())
+    .then((data) => showLikePet(data.petData));
+};
+
+const showLikePet = (data) => {
+  const likePet = document.getElementById("like-pet");
+
+  const element = document.createElement("div");
+  element.classList = "mb-5   ";
+  element.innerHTML = `
+      <img src=${data?.image}/>
+      `;
+  likePet.append(element);
+  console.log(element);
+};

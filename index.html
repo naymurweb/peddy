@@ -133,6 +133,21 @@
 
     </section>
 
+    <!-- You can open the modal using ID.showModal() method -->
+    <button id="modal" class="btn hidden" onclick="my_modal_4.showModal()">open modal</button>
+    <dialog id="my_modal_4" class="modal">
+      <div class="modal-box w-11/12 max-w-5xl">
+        <div id="modal-content">
+        </div>
+        <div class="modal-action">
+          <form method="dialog" class="w-full">
+            <!-- if there is a button, it will close the modal -->
+            <button class="btn bg-primary text-white w-full font-bold text-xl">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
   </main>
   <footer class="bg-[#131313] ">
     <footer class="footer text-white text-base-content p-10 container mx-auto py-20">

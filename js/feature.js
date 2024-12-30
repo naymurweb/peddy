@@ -82,7 +82,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
                       pet?.gender ? pet?.gender : "Not Available"
                     }</p>
                     <p><i class="fa-solid fa-mercury"></i> Price : ${
-                      pet?.price ? pet?.price : "Not Available"
+                      pet?.price ? `${pet?.price}$` : "Not Available"
                     }</p>
                     <div class="flex justify-between border-t-2 py-3 items-center">
                       <button onclick={likePet(${
@@ -99,6 +99,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
   }
 };
 
+// pet details
 const petDetails = (id) => {
   fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`)
     .then((res) => res.json())
@@ -127,9 +128,9 @@ const showPetDetails = (data) => {
                     <p><i class="fa-solid fa-mercury"></i> Gender: ${
                       data?.gender ? data?.gender : "Not Available"
                     }</p>
-                    <p><i class="fa-solid fa-mercury"></i> Price : ${
-                      data?.price ? data?.price : "Not Available"
-                    }</p>
+                     <p><i class="fa-solid fa-mercury"></i> Price : ${
+                       data?.price ? `${data?.price}$` : "Not Available"
+                     }</p>
                     <hr />
                     <h3 class="text-2xl font-bold">
                     Details Information
@@ -137,8 +138,6 @@ const showPetDetails = (data) => {
                     <p>${data.pet_details}</p>
     `;
 };
-
-petsData();
 
 // like button
 const likePet = (id) => {
@@ -158,3 +157,17 @@ const showLikePet = (data) => {
   likePet.append(element);
   console.log(element);
 };
+
+// sort by price
+
+const sortPrice = () => {
+  fetch(`https://openapi.programming-hero.com/api/peddy/pets`)
+    .then((res) => res.json())
+    .then((data) => {
+      const pets = data.pets;
+      const sortedPets = [...pets].sort((a, b) => b.price - a.price);
+      showPets(sortedPets);
+    });
+};
+
+petsData();

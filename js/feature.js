@@ -91,7 +91,9 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
                       <button onclick={likePet(${
                         pet?.petId
                       })}  class="btn btn-sm text-primary text-xl px-8"><i class="fa-regular fa-thumbs-up"></i></button>
-                      <button class="btn btn-sm text-primary text-lg">Adopt</button>
+                      <button onclick={adoptClick(${
+                        pet?.petId
+                      })} class="btn btn-sm text-primary text-lg">Adopt</button>
                       <button onclick={petDetails(${
                         pet?.petId
                       })}  class="btn btn-sm text-primary text-lg" >Details</button>
@@ -153,12 +155,20 @@ const showLikePet = (data) => {
   const likePet = document.getElementById("like-pet");
 
   const element = document.createElement("div");
-  element.classList = "mb-5   ";
+  element.classList = "mb-5";
   element.innerHTML = `
-      <img src=${data?.image}/>
+  <div class="card bg-base-100 shadow-xl p-4 rounded-lg m-5">
+  <figure>
+    <img
+    class='rounded-lg'
+      src=${data?.image}
+      alt="Shoes"
+      width="100%" />
+  </figure>
+  
+</div>
       `;
   likePet.append(element);
-  console.log(element);
 };
 
 // sort by price

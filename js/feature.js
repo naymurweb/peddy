@@ -15,8 +15,8 @@ const showCategory = (data) => {
 
     btn.innerHTML = `<img src=${pet?.category_icon} width="20px md:30px" alt=""> ${pet.category}`;
     btn.setAttribute("onclick", `categoryPets('${pet.category}')`);
+    btn.classList.add("category-btn");
     btn.setAttribute("id", `btn-${pet.category}`);
-
     categoriesContainer.append(btn);
   });
 };
@@ -25,6 +25,9 @@ const categoryPets = (id) => {
   fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
     .then((res) => res.json())
     .then((data) => {
+      removeActive();
+      const activeBtn = document.getElementById(`btn-${id}`);
+      activeBtn.classList.add("active");
       showPets(data.data);
     });
 };
